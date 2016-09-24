@@ -2,4 +2,4 @@
 
 Legacy code, interface doesn't work. Just want to keep it safe.
 
-Rules based on this (http://dicegames.org/pig/)
+Rules based on http://dicegames.org/pig/
