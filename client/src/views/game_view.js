@@ -16,8 +16,10 @@ GameView.prototype = {
     this.player1View.render();
     this.player2View.render();
 
+
     var nextTurnButton = document.createElement('button');
     nextTurnButton.innerText = "Next Turn";
+
     nextTurnButton.onclick = function(){
       if(this.model.currentTurn){
         this.model.completeTurn();
@@ -28,7 +30,9 @@ GameView.prototype = {
       this.turnView.updateTurn(this.model.currentTurn);
     }.bind(this);
 
-    this.el.appendChild(nextTurnButton);
+    if(!this.model.gameWon()){
+      this.el.appendChild(nextTurnButton);
+    }
   }
 }
 

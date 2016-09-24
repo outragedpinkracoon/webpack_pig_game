@@ -47,7 +47,6 @@ describe('turn', function(){
     assert.equal(turn.score, 25);
   });
 
-
   it('should set finished true and reset score to 0 if single 1', function(){
     var p1 = new Player('Valerie');
     var stubDice = {

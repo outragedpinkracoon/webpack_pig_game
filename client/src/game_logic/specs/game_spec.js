@@ -47,11 +47,4 @@ describe('game', function(){
     assert.equal(game.nextPlayer(), p2);
   })
 
-  it('should give the next player', function(){
-    var p1 = new Player('Valerie');
-    var p2 = new Player('Jay');
-    var game = new Game(p1, p2);
-    game.nextTurn();
-    assert.equal(game.nextPlayer(), p2);
-  })
 });

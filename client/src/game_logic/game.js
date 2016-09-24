@@ -31,7 +31,7 @@ Game.prototype = {
   },
 
   winningPlayer: function(){
-    if(!this.gameWon) return false;
+    if(!this.gameWon) return;
     if(this.player1.hasWon) {
       return this.player1
     }

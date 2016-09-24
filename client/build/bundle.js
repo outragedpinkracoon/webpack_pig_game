@@ -84,8 +84,10 @@
 	    this.player1View.render();
 	    this.player2View.render();
 	
+	
 	    var nextTurnButton = document.createElement('button');
 	    nextTurnButton.innerText = "Next Turn";
+	
 	    nextTurnButton.onclick = function(){
 	      if(this.model.currentTurn){
 	        this.model.completeTurn();
@@ -96,7 +98,9 @@
 	      this.turnView.updateTurn(this.model.currentTurn);
 	    }.bind(this);
 	
-	    this.el.appendChild(nextTurnButton);
+	    if(!this.model.gameWon()){
+	      this.el.appendChild(nextTurnButton);
+	    }
 	  }
 	}
 	
@@ -118,11 +122,19 @@
 	  render: function(){
 	    this.el.innerHTML = "";
 	    var name = document.createElement('p');
+	    var winner = document.createElement('p');
 	    var score = document.createElement('p');
 	    name.innerHTML = this.model.name;
 	    score.innerHTML = this.model.score;
+	    winner.innerHTML = "Winner!";
+	    
+	    if(!this.model.hasWon) {
+	      winner.style.display = "none";
+	    }
+	
 	    this.el.appendChild(name);
 	    this.el.appendChild(score);
+	    this.el.appendChild(winner);
 	  }
 	}
 	
@@ -227,7 +239,7 @@
 	  },
 	
 	  winningPlayer: function(){
-	    if(!this.gameWon) return false;
+	    if(!this.gameWon) return;
 	    if(this.player1.hasWon) {
 	      return this.player1
 	    }
