@@ -4,17 +4,20 @@ var Turn = require('../turn');
 var Dice = require('../dice');
 
 
-describe('turn', function(){
+describe('turn', function(){ 
+
   it('should have a player', function(){
     var p1 = new Player('Valerie');
     var turn = new Turn(p1);
     assert.equal( turn.player, p1 );
   });
+
   it('should have a score init 0', function(){
     var p1 = new Player('Valerie');
     var turn = new Turn(p1);
     assert.equal( turn.score, 0 );
   });
+
   it('should have a dice', function(){
     var p1 = new Player('Valerie');
     var d1 = new Dice(6);

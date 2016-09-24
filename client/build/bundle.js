@@ -258,27 +258,39 @@
 	}
 	
 	Turn.prototype = {
-	  //Holy shit refactor me
 	  roll: function(){
 	    console.log('turn rolling', this.score)
 	
-	    if(this.finished) return false;
+	    if(this.finished) return;
 	
 	    var result1 = this.dice.roll()
 	    var result2 = this.dice.roll()
 	
-	    if(this.hasAOne(result1, result2)){
-	      if(this.bothEqualOne(result1, result2)){
-	        this.score += 25
-	      }else{
-	        this.score = 0;
-	        this.finished = true;
-	      }
-	    } else{
-	      console.log('turn score', this.score)
-	      this.score += result1 + result2
-	    }
+	    turnInfo = this.checkRolls(result1, result2);
+	
+	    if(turnInfo.finished) this.finished = true;
+	    this.score += turnInfo.score;
+	
+	    console.log('turn score', this.score)
+	
 	    return([result1, result2])
+	  },
+	
+	  checkRolls: function(result1, result2){
+	    var score = 0;
+	    if(!this.hasAOne(result1, result2)) {
+	      score = result1 + result2    
+	    }
+	    
+	    if(this.bothEqualOne(result1, result2)){
+	      score = 25;
+	    }
+	
+	    var turnFinished = score == 0;
+	    return {
+	      score: score,
+	      finished: turnFinished
+	    }
 	  },
 	
 	  //TODO this is crude
